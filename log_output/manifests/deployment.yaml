@@ -19,5 +19,11 @@ spec:
       - image: bun-hash
         name: bun-hash
         imagePullPolicy: IfNotPresent
-        resources: {}
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
 status: {}
