@@ -19,7 +19,7 @@ function App() {
   );
 }
 
-const root = createRoot(document.getElementById("elysia")!);
+const root = createRoot(document.getElementById("root")!);
 root.render(
   <Layout className="gap-6">
     <App />
