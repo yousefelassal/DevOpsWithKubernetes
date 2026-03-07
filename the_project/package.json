@@ -1,15 +1,32 @@
 {
   "name": "the_project",
   "version": "1.0.50",
+  "module": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build --compile --minify-whitespace --minify-syntax --outfile server src/index.ts",
+    "lint": "oxlint --fix",
+    "format": "oxfmt"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/eden": "^1.4.8",
+    "@elysiajs/openapi": "^1.4.14",
+    "@elysiajs/static": "^1.4.7",
+    "@rasla/logify": "^5.2.1",
+    "@tanstack/react-query": "^5.90.21",
+    "clsx": "^2.1.1",
+    "elysia": "latest",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "bun-types": "latest"
-  },
-  "module": "src/index.js"
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "bun-plugin-tailwind": "^0.1.2",
+    "bun-types": "latest",
+    "oxfmt": "^0.36.0",
+    "oxlint": "^1.51.0"
+  }
 }
