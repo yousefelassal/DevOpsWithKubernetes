@@ -1,7 +1,4 @@
-import { createRoot } from "react-dom/client";
 import { useQuery } from "@tanstack/react-query";
-
-import Layout from "../layouts";
 import { api } from "../libs/api";
 
 function App() {
@@ -19,9 +16,4 @@ function App() {
   );
 }
 
-const root = createRoot(document.getElementById("root")!);
-root.render(
-  <Layout className="gap-6">
-    <App />
-  </Layout>,
-);
+export default App;

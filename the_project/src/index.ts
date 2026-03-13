@@ -8,7 +8,8 @@ import { getLogger } from "@logtape/logtape";
 await configure({
   sinks: { console: getConsoleSink() },
   loggers: [
-    { category: ["elysia"], sinks: ["console"], lowestLevel: "trace" }
+    { category: ["logtape", "meta"], sinks: ["console"], lowestLevel: "warning" },
+    { category: ["elysia"], sinks: ["console"], lowestLevel: "trace" },
   ],
 });
 
@@ -20,10 +21,10 @@ export const app = new Elysia()
   .use(elysiaLogger())
   .get("/message", () => {
     logger.info("Message endpoint hit");
-    return { message: "Hello from server" } as const
+    return { message: "Hello from server" } as const;
   })
   .listen(process.env.PORT || 3000);
 
 console.log(
-  `Server started at ${app.server?.protocol}://${app.server?.hostname}:${app.server?.port}`
+  `Server started at ${app.server?.protocol}://${app.server?.hostname}:${app.server?.port}`,
 );
