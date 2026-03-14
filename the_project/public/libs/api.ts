@@ -2,4 +2,6 @@ import { treaty } from "@elysiajs/eden";
 
 import type { app } from "@server";
 
-export const api = treaty<typeof app>(process.env.PUBLIC_API_URL! || "http://localhost:3000");
+const apiUrl = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
+
+export const api = treaty<typeof app>(apiUrl);

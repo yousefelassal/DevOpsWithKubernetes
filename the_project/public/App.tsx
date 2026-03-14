@@ -5,7 +5,7 @@ import type { PropsWithChildren } from "react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
 
-import "@public/styles/global.css";
+import "./global.css";
 
 const client = new QueryClient();
 

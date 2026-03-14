@@ -17,7 +17,7 @@ const logger = getLogger(["elysia", "index"]);
 
 export const app = new Elysia()
   .use(openapi({ references: fromTypes() }))
-  .use(await staticPlugin({ prefix: "/" }))
+  .use(await staticPlugin({ prefix: "/", assets: `${process.cwd()}/public`, indexHTML: true }))
   .use(elysiaLogger())
   .get("/message", () => {
     logger.info("Message endpoint hit");

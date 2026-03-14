@@ -11,6 +11,7 @@
         "@elysiajs/static": "^1.4.7",
         "@logtape/elysia": "^2.0.4",
         "@tanstack/react-query": "^5.90.10",
+        "bun-plugin-tailwind": "^0.1.2",
         "clsx": "^2.1.1",
         "elysia": "1.4.16",
         "react": "^19.2.0",
@@ -21,7 +22,6 @@
       "devDependencies": {
         "@types/react": "^19.2.5",
         "@types/react-dom": "^19.2.3",
-        "bun-plugin-tailwind": "^0.1.2",
         "bun-types": "latest",
         "oxfmt": "^0.36.0",
         "oxlint": "^1.51.0",

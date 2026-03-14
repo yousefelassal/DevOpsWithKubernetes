@@ -17,28 +17,14 @@ COPY . .
 
 ENV NODE_ENV=production
 
-RUN bun build \
-	--compile \
-	--target bun \
-	--minify-whitespace \
-	--minify-syntax \
-	--outfile server \
-	src/index.ts
+RUN bun run build
 
-# copy only the production dependencies and the built server file into the final image
-# FROM gcr.io/distroless/base AS release
-FROM oven/bun AS release
+FROM gcr.io/distroless/base AS release
 
 WORKDIR /usr/src/app
 
-# copy node_modules from temp directory
-COPY --from=install /temp/prod/node_modules node_modules
-
-# copy public directory
-COPY --from=prerelease /usr/src/app/public public
-
-# copy server file
-COPY --from=prerelease /usr/src/app/server server
+COPY --from=prerelease /usr/src/app/dist/public public
+COPY --from=prerelease /usr/src/app/dist/server server
 
 ENV NODE_ENV=production
 
