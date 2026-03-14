@@ -57,3 +57,20 @@ To clean up the cluster:
 ```bash
 k3d cluster delete <cluster-name>
 ```
+
+To get the pods:
+
+```bash
+kubectl get pods
+```
+
+To port forward the deployment to access it locally:
+
+```bash
+kubectl port-forward <pod-name> 3003:3000
+
+Forwarding from 127.0.0.1:3003 -> 3000
+Forwarding from [::1]:3003 -> 3000
+```
+
+Then you can access the application at http://localhost:3003.
