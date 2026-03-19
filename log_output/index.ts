@@ -10,3 +10,12 @@ const tick = Effect.gen(function* () {
 const main = Effect.repeat(tick, Schedule.spaced("1 second"));
 
 Effect.runPromise(main);
+
+const server = Bun.serve({
+  port: 3003,
+  routes: {
+    "/": () => new Response(`${new Date().toISOString()}: ${hash}`),
+  },
+});
+
+console.log(`Server running at ${server.url}`);
