@@ -3,12 +3,10 @@ kind: Service
 metadata:
   name: todo-app-svc
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
-    app: todo-app # This selector matches the labels of the pods created by the deployment, allowing the service to route traffic to those pods.
+    app: todo-app
   ports:
-    - name: http
-      protocol: TCP
-      port: 3000
-      targetPort: 3000 # This is the port on which the application inside the container is listening. The service will forward traffic from the specified port to this target port on the pods.
-      nodePort: 30080 # This is the port on which the service will be exposed on each node in the cluster. You can access the service using this port on any node's IP address.
+    - protocol: TCP
+      port: 2345
+      targetPort: 3000
