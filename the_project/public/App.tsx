@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
+import { createHashRouter, Outlet, RouterProvider } from "react-router";
 import { Suspense, lazy } from "react";
 import type { PropsWithChildren } from "react";
 
@@ -27,9 +27,10 @@ function SuspenseWrapper() {
   );
 }
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     Component: SuspenseWrapper,
+    ErrorBoundary: () => <div>Error loading the page.</div>,
     children: [
       {
         path: "/",
