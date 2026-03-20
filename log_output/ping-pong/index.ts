@@ -3,7 +3,10 @@ let counter = 0;
 const server = Bun.serve({
   port: 3004,
   routes: {
-    "/": () => new Response(`pong ${counter++}`),
+    "/pingpong": () => {
+      console.log(`${new Date().toISOString()} - ping received: ${counter}`);
+      return new Response(`pong ${counter++}`);
+    },
   },
 });
 
