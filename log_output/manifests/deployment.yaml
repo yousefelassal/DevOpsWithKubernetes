@@ -15,15 +15,34 @@ spec:
       labels:
         app: hash-app
     spec:
+      volumes:
+        - name: log-volume
+          emptyDir: {}
       containers:
-      - image: bun-hash
-        name: bun-hash
-        imagePullPolicy: IfNotPresent
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "250m"
-            memory: "256Mi"
+        - image: bun-hash
+          name: bun-hash
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: log-volume
+              mountPath: /usr/src/app/files
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+        - image: file-reader:0.0.1
+          name: file-reader
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: log-volume
+              mountPath: /usr/src/app/files
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
 status: {}
