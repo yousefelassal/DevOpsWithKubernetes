@@ -15,9 +15,12 @@ spec:
       labels:
         app: hash-app
     spec:
+      securityContext:
+        fsGroup: 1000 # This is required to allow the containers to write to the shared volume, as they run as non-root users
       volumes:
         - name: log-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: log-pvc
       containers:
         - image: bun-hash
           name: bun-hash
@@ -32,7 +35,7 @@ spec:
             limits:
               cpu: "250m"
               memory: "256Mi"
-        - image: file-reader:0.0.1
+        - image: file-reader
           name: file-reader
           imagePullPolicy: IfNotPresent
           volumeMounts:

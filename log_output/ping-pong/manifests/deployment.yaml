@@ -15,10 +15,19 @@ spec:
       labels:
         app: ping-pong
     spec:
+      securityContext:
+        fsGroup: 1000 # This is required to allow the containers to write to the shared volume, as they run as non-root users
+      volumes:
+        - name: log-volume
+          persistentVolumeClaim:
+            claimName: log-pvc
       containers:
-        - image: ping-pong:0.0.2
+        - image: ping-pong
           name: ping-pong
           imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: log-volume
+              mountPath: /usr/src/app/files
           resources:
             requests:
               cpu: "100m"
